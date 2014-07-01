@@ -14,7 +14,7 @@ public class MovieManager {
 
 	//Map<String,Movie> movies= new HashMap<String,Movie>();
 	public static void main(String[] args) throws IOException {
-		Map<Integer,Movie> moviesMap = new HashMap<Integer,Movie>();
+		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
 		MovieManager moviemanager= new MovieManager();
 		// stream = MovieManager.class.getResourceAsStream("movie.data");
@@ -26,13 +26,26 @@ public class MovieManager {
 		 stream = MovieManager.class.getClassLoader().getResourceAsStream("user.data");
 		// moviemanager.setUsers(stream);
 		// findRatings(RatingList);
-		 addRatings(RatingList,moviesMap);
+		 //addRatings(RatingList,moviesMap);
 		
 	}
 	
-public static void addRatings(ArrayList<Rating> ratingList, Map<Integer, Movie> moviesMap) {
-		// TODO Auto-generated method stub
-		
+	public static void addRatings(ArrayList<Rating> ratingList, Map<String, Movie> moviesMap) {
+		Integer rate=0;
+		for (Map.Entry<String, Movie> entry : moviesMap.entrySet())
+		{
+		    //System.out.println(entry.getKey() + "/" + entry.getValue());
+		    for(int i=0;i<ratingList.size();i++){
+		    	if(ratingList.get(i).getId() == entry.getKey()){
+		    		rate= Integer.parseInt(ratingList.get(i).getRating()) + rate;
+		    	}
+			}
+		   // moviesMap.put(entry.getKey(),moviesMap.get(entry.getKey())+1);
+		//    moviesMap.put(entry.getKey().Ratings, rate);
+		}
+	
+	
+			
 	}
 
 /*	public static void findRatings(ArrayList<Rating> ratingList) {
@@ -121,8 +134,8 @@ public static void addRatings(ArrayList<Rating> ratingList, Map<Integer, Movie> 
 		return rating;
 	}
 
-	public Map<Integer,Movie> convertInputStreamToMap(InputStream moviesInputStream){
-		Map<Integer,Movie> moviesMap = new HashMap<Integer,Movie>();
+	public Map<String,Movie> convertInputStreamToMap(InputStream moviesInputStream){
+		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		try {
 			List<String> lines = IOUtils.readLines(moviesInputStream);
 			for(String line : lines){
@@ -147,7 +160,8 @@ public static void addRatings(ArrayList<Rating> ratingList, Map<Integer, Movie> 
 		Rating rating= new Rating();
 		if(strToken.countTokens() == 23){
 			if(strToken.hasMoreTokens()){
-				movie.setId(Integer.parseInt(strToken.nextToken()));
+				//movie.setId(Integer.parseInt(strToken.nextToken()));
+				movie.setId(strToken.nextToken());
 				movie.setMovieName(strToken.nextToken());
 				movie.setReleaseDate(strToken.nextToken());
 				movie.setUrl(strToken.nextToken());

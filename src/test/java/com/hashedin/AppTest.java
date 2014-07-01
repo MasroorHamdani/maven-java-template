@@ -42,7 +42,7 @@ public class AppTest
      */
     public void testApp()
     {
-    	Map<Integer,Movie> moviesMap = new HashMap<Integer,Movie>();
+    	Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
 		MovieManager moviemanager= new MovieManager();
 		// stream = MovieManager.class.getResourceAsStream("movie.data");

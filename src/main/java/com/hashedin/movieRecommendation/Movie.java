@@ -2,7 +2,7 @@ package com.hashedin.movieRecommendation;
 
 public class Movie {
 	
-	private Integer Id;
+	private String Id;
 	private String MovieName;
 	private String url;
 	private String ReleaseDate;
@@ -13,10 +13,10 @@ public class Movie {
 	public void setRatings(String ratings) {
 		Ratings = ratings;
 	}
-	public Integer getId() {
+	public String getId() {
 		return Id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		Id = id;
 	}
 	public String getMovieName() {
