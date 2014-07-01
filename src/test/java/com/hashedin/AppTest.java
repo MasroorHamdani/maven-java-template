@@ -1,5 +1,14 @@
 package com.hashedin;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.hashedin.movieRecommendation.Movie;
+import com.hashedin.movieRecommendation.MovieManager;
+import com.hashedin.movieRecommendation.Rating;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +42,18 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+    	Map<Integer,Movie> moviesMap = new HashMap<Integer,Movie>();
+		ArrayList<Rating> RatingList = new ArrayList<Rating>();
+		MovieManager moviemanager= new MovieManager();
+		// stream = MovieManager.class.getResourceAsStream("movie.data");
+		 InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("testMovie.data");
+		 moviesMap=moviemanager.convertInputStreamToMap(stream);
+		 //System.out.println("moviesMap "+ moviesMap);
+		 stream = MovieManager.class.getClassLoader().getResourceAsStream("testRatings.data");
+		 RatingList = moviemanager.setRatings(stream);
+		 assertEquals(3,moviesMap.size());
+		 assertEquals(100000,RatingList.size());
+		 
     }
+    
 }
