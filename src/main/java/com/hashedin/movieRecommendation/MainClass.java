@@ -15,15 +15,12 @@ public class MainClass {
 		FileConnector fileconnector=new FileConnector();
 		String FileName="movie.data";
 		moviesMap = fileconnector.FileConnectingMovieFunction(FileName);
+		
 		MovieManager moviemanager= new MovieManager();
 		FileName="ratings.data";
 		RatingList = fileconnector.FileConnectingRatingFunction(FileName);
 		FileName="user.data";
 		UserMap=fileconnector.FileConnectingUserFunction(FileName);
-//		for (int i=0;i<RatingList.size();i++){
-//			System.out.println("list content "+RatingList.get(i));
-//		}
-		//System.out.println("genre "+RatingList);
 		moviemanager.addRatings(RatingList,moviesMap,UserMap);
 		MovieDirectory movieDirectory=new MovieDirectory(moviesMap,RatingList,UserMap);
 		

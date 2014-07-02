@@ -11,7 +11,13 @@ import java.util.StringTokenizer;
 import org.apache.commons.io.IOUtils;
 
 public class MovieManager {
-	
+	/** Function for Finding Ratings for movies and setting its value in objects
+	 * 
+	 * @param ArrayList<Rating> 
+	 * @param Map<String, Movie>
+	 * @param Map<String, User>
+	 * @return void
+	 */
 	public void addRatings(ArrayList<Rating> ratingList, Map<String, Movie> moviesMap, Map<String, User> userMap) {
 		Integer rate;;
 		ArrayList<Movie> tempMovieList = new ArrayList<Movie>();
@@ -34,44 +40,4 @@ public class MovieManager {
 			//System.out.println("Rating= "+movieList);
 		}
 	}
-
-/*	public static void findRatings(ArrayList<Rating> ratingList) {
-		int count=0;
-		for(int j=1;j<943;j++){
-			for(int i=0;i<ratingList.size();i++){
-				if(ratingList.get(i)==1){
-					count++;
-				}
-			}
-		}
-		
-	}*/
-
-	/*private void getMovieList() throws IOException {
-		Movie movie = new Movie();
-		InputStream stream =  getClass().getClassLoader().getResourceAsStream("movie.data");
-		System.out.println("Stream "+stream);
-		movie=parseLine(stream);
-		
-	}*/
-	/*private Movie parseLine(InputStream in) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		String strLine;
-		Movie movie=new Movie();
-		System.out.println("readLine "+br.readLine());
-		//Read File Line By Line
-		while ((strLine = br.readLine()) != null)   {
-		  // Print the content on the console
-		  System.out.println ("strline "+strLine);
-		  StringTokenizer strToken = new StringTokenizer(strLine,"|");
-		  //System.out.println ("token "+strToken);
-		  movie.setId(strToken.nextToken());
-		  movie.setMovieName(strToken.nextToken());
-		  movie.setReleaseDate(strToken.nextToken());
-		  movie.setUrl(strToken.nextToken());
-		}
-		
-		return movie;
-	}*/
-
 }

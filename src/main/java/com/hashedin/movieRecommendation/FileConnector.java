@@ -10,7 +10,14 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.io.IOUtils;
 
+/** Class for Geting data from Files**/
+
 public class FileConnector {
+	/** Function for connecting with Movie Function
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return HashMap containing <String, Movie>
+	 */
 	public Map<String,Movie> FileConnectingMovieFunction(String FileName){
 		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		MovieManager moviemanager= new MovieManager();
@@ -20,6 +27,11 @@ public class FileConnector {
 		return moviesMap;
 	}
 	
+	/** Function for Converting input stream into a map
+	 * 
+	 * @param Path of file to ba accessed
+	 * @return  hashmap of type <String, Movie>
+	 */
 	public Map<String,Movie> convertInputStreamToMap(InputStream moviesInputStream){
 		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		try {
@@ -41,6 +53,11 @@ public class FileConnector {
 		return moviesMap;
 	}
 
+	/** Function for parsing a file
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return Object of type Movie
+	 */
 	public Movie parseLine(String line){
 		StringTokenizer strToken = new StringTokenizer(line,"|");
 		//System.out.println("strToken length "+strToken.countTokens());
@@ -63,13 +80,21 @@ public class FileConnector {
 					}
 					i++;
 				}
+				movie.setGenreList(GenreList);
 			}
 	//	} else {
 		//	System.out.println("Incomplete Movie Details");
-		//}//System.out.println("genre "+movie);
+		//}
+			//System.out.println("genre "+movie);
 		return movie;
 	}
 
+	/** Function for Generating Arraylist of genre
+	 * 
+	 * @param StringTkenizer containing line of file 
+	 * @param int variable for maintaining data
+	 * @return ArrayList<Integer>
+	 */
 	private ArrayList<Integer> createGenre(StringTokenizer strToken ,int i) {
 		ArrayList<Integer> GenreList= new ArrayList<Integer>();
 		while(i<23){
@@ -81,6 +106,11 @@ public class FileConnector {
 		return GenreList;
 	}
 
+	/** Function for connecting with Rating File
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return ArrayList containing <Rating>
+	 */
 	public ArrayList<Rating> FileConnectingRatingFunction(String FileName){
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
 		//MovieManager moviemanager= new MovieManager();
@@ -93,6 +123,11 @@ public class FileConnector {
 		}*/
 		return RatingList;
 	}
+	/** Function for setting values of Rating values in anarray list
+	 * 
+	 * @param InputStream i.e; path of file
+	 * @return ArrayList<Rating>
+	 */
 	public ArrayList<Rating> setRatings(InputStream RatingInputstream) {
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
 		try {//int i=0;
@@ -116,6 +151,11 @@ public class FileConnector {
 		
 	}
 
+	/** Function for parsing a file
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return Object of type Rating
+	 */
 	private Rating parseRatingFileLine(String line) {
 		StringTokenizer strToken = new StringTokenizer(line);
 		//System.out.println("strToken length "+strToken.countTokens());
@@ -132,6 +172,11 @@ public class FileConnector {
 		return rating;
 	}
 
+	/** Function for connecting with User File
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return HashMap containing <String, User>
+	 */
 	public Map<String, User> FileConnectingUserFunction(String fileName) {
 		Map<String,User> userMap = new HashMap<String,User>();
 		InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream(fileName);
@@ -157,6 +202,11 @@ public class FileConnector {
 	
 }
 
+	/** Function for parsing a file
+	 * 
+	 * @param FileName file name to be accessed
+	 * @return Object of type User
+	 */
 	public User parseUserFileLine(String line) {
 		StringTokenizer strToken = new StringTokenizer(line,"|");
 		//System.out.println("strToken length "+strToken.countTokens());
