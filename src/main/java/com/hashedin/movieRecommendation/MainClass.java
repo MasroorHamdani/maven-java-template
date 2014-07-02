@@ -11,7 +11,7 @@ public class MainClass {
 	public static void main(String[] args) throws IOException {
 		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
-		Map<String,User> UserList=new HashMap<String,User>();
+		Map<String,User> UserMap=new HashMap<String,User>();
 		FileConnector fileconnector=new FileConnector();
 		String FileName="movie.data";
 		moviesMap = fileconnector.FileConnectingMovieFunction(FileName);
@@ -19,8 +19,14 @@ public class MainClass {
 		FileName="ratings.data";
 		RatingList = fileconnector.FileConnectingRatingFunction(FileName);
 		FileName="user.data";
-		UserList=fileconnector.FileConnectingUserFunction(FileName);
-		moviemanager.addRatings(RatingList,moviesMap,UserList);
+		UserMap=fileconnector.FileConnectingUserFunction(FileName);
+//		for (int i=0;i<RatingList.size();i++){
+//			System.out.println("list content "+RatingList.get(i));
+//		}
+		//System.out.println("genre "+RatingList);
+		moviemanager.addRatings(RatingList,moviesMap,UserMap);
+		MovieDirectory movieDirectory=new MovieDirectory(moviesMap,RatingList,UserMap);
+		
 		
 	}
 

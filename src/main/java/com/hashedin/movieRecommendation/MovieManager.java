@@ -20,11 +20,18 @@ public class MovieManager {
 		Movie movieList;
 		for(Rating list : ratingList){
 			movieList=moviesMap.get(list.getId());
-			movieList.setRatings(movieList.getRatings()+Integer.parseInt(list.getRating()));
+			try{
+			//	System.out.println(moviesMap);
+			//	if(movieList.getRatings() != null && list.getRating() != null){
+					movieList.setRatings(movieList.getRatings()+Integer.parseInt(list.getRating()));
+			//	}
+				}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			movieList.setCount(movieList.getCount()+1);
 			user = userMap.get(list.getUserId());
 			user.setCount(user.getCount()+1);
-			System.out.println("Rating= "+movieList);
+			//System.out.println("Rating= "+movieList);
 		}
 	}
 

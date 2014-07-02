@@ -1,4 +1,7 @@
 package com.hashedin.movieRecommendation;
+
+import java.util.ArrayList;
+
 //1|24|M|technician|85711
 public class User {
 	private String UserId;
@@ -6,6 +9,13 @@ public class User {
 	private String Gender;
 	private String Job;
 	private Integer count;
+	private ArrayList<Integer> genre;
+	public ArrayList<Integer> getGenre() {
+		return genre;
+	}
+	public void setGenre(ArrayList<Integer> genre) {
+		this.genre = genre;
+	}
 	public User() {
 		count=0;
 	}
