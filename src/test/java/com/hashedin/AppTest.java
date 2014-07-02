@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.hashedin.movieRecommendation.FileConnector;
 import com.hashedin.movieRecommendation.Movie;
 import com.hashedin.movieRecommendation.MovieManager;
 import com.hashedin.movieRecommendation.Rating;
@@ -42,18 +43,17 @@ public class AppTest
      */
     public void testApp()
     {
-    	Map<String,Movie> moviesMap = new HashMap<String,Movie>();
+    		
+		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
+		FileConnector fileconnector=new FileConnector();
+		String FileName="testMovie.data";
+		moviesMap = fileconnector.FileConnectingMovieFunction(FileName);
 		MovieManager moviemanager= new MovieManager();
-		// stream = MovieManager.class.getResourceAsStream("movie.data");
-		 InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("testMovie.data");
-		 moviesMap=moviemanager.convertInputStreamToMap(stream);
-		 //System.out.println("moviesMap "+ moviesMap);
-		 stream = MovieManager.class.getClassLoader().getResourceAsStream("testRatings.data");
-		 RatingList = moviemanager.setRatings(stream);
-		 assertEquals(3,moviesMap.size());
-		 assertEquals(100000,RatingList.size());
-		 
-    }
-    
+		FileName="testRatings.data";
+		RatingList = fileconnector.FileConnectingRatingFunction(FileName);
+		InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("user.data");
+		assertEquals(3,moviesMap.size());
+		assertEquals(100000,RatingList.size());
+	}
 }
