@@ -1,8 +1,32 @@
 package com.hashedin.movieRecommendation;
-
+//1|24|M|technician|85711
 public class User {
 	private String UserId;
+	private Integer Age;
+	private String Gender;
+	private String Job;
 	private Integer count;
+	public User() {
+		count=0;
+	}
+	public Integer getAge() {
+		return Age;
+	}
+	public void setAge(Integer age) {
+		Age = age;
+	}
+	public String getGender() {
+		return Gender;
+	}
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+	public String getJob() {
+		return Job;
+	}
+	public void setJob(String job) {
+		Job = job;
+	}
 	public String getUserId() {
 		return UserId;
 	}
@@ -17,7 +41,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [UserId=" + UserId + ", count=" + count + "]";
+		return "User [UserId=" + UserId + ", Age=" + Age + ", Gender=" + Gender
+				+ ", Job=" + Job + ", count=" + count + "]";
 	}
 	
 }

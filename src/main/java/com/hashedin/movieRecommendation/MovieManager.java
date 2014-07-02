@@ -12,18 +12,19 @@ import org.apache.commons.io.IOUtils;
 
 public class MovieManager {
 	
-	public static void addRatings(ArrayList<Rating> ratingList, Map<String, Movie> moviesMap) {
-		Integer rate=0;
-		for (Map.Entry<String, Movie> entry : moviesMap.entrySet())
-		{
-		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-		    for(int i=0;i<ratingList.size();i++){
-		    	if(ratingList.get(i).getId() == entry.getKey()){
-		    		rate= Integer.parseInt(ratingList.get(i).getRating()) + rate;
-		    	}
-			}
-		 //   moviesMap.put(entry.getKey(),moviesMap.get(entry.getKey())+1);
-		 //   moviesMap.put(entry.getKey(), entry.getValue().setRatings(rate.toString()));
+	public void addRatings(ArrayList<Rating> ratingList, Map<String, Movie> moviesMap, Map<String, User> userMap) {
+		Integer rate;;
+		ArrayList<Movie> tempMovieList = new ArrayList<Movie>();
+		rate=0;
+		User user;
+		Movie movieList;
+		for(Rating list : ratingList){
+			movieList=moviesMap.get(list.getId());
+			movieList.setRatings(movieList.getRatings()+Integer.parseInt(list.getRating()));
+			movieList.setCount(movieList.getCount()+1);
+			user = userMap.get(list.getUserId());
+			user.setCount(user.getCount()+1);
+			System.out.println("Rating= "+movieList);
 		}
 	}
 
@@ -39,46 +40,6 @@ public class MovieManager {
 		
 	}*/
 
-/*	public void setUsers(InputStream UserInputstream) {
-		ArrayList<User> UserList = new ArrayList<User>();
-		try {
-			List<String> lines = IOUtils.readLines(UserInputstream);
-			for(String line : lines){
-				User user = new User();
-				user = parseUserFileLine(line);
-				//RatingMap.put(rating.getId(), rating);
-				UserList.add(user);
-			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		//return RatingList;
-		
-	}*/
-
-	public User parseUserFileLine(String line) {
-		StringTokenizer strToken = new StringTokenizer(line,"|");
-		//System.out.println("strToken length "+strToken.countTokens());
-		User user= new User();
-		if(strToken.countTokens() == 5){
-			if(strToken.hasMoreTokens()){
-				user.setUserId(strToken.nextToken());
-			}
-		}
-		else {
-			System.out.println("Incomplete Rating Details");
-		}
-		return user;
-}
-
-	
-	
-
-	
-	
-
-	
 	/*private void getMovieList() throws IOException {
 		Movie movie = new Movie();
 		InputStream stream =  getClass().getClassLoader().getResourceAsStream("movie.data");

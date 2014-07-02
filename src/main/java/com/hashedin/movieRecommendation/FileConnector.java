@@ -24,9 +24,9 @@ public class FileConnector {
 		try {
 			List<String> lines = IOUtils.readLines(moviesInputStream);
 			for(String line : lines){
-				Movie m = new Movie();
-				m = parseLine(line);
-				moviesMap.put(m.getId(), m);
+				Movie movies = new Movie();
+				movies = parseLine(line);
+				moviesMap.put(movies.getId(), movies);
 			}
 			
 		} catch (IOException e) {
@@ -60,18 +60,24 @@ public class FileConnector {
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
 		//MovieManager moviemanager= new MovieManager();
 		InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream(FileName);
+		//System.out.print(stream);
 		RatingList = setRatings(stream);
+		//System.out.println(RatingList);
 		return RatingList;
 	}
 	public ArrayList<Rating> setRatings(InputStream RatingInputstream) {
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
-		try {
+		try {//int i=0;
 			List<String> lines = IOUtils.readLines(RatingInputstream);
 			for(String line : lines){
+				
 				Rating rating = new Rating();
 				rating = parseRatingFileLine(line);
 				//RatingMap.put(rating.getId(), rating);
+				//System.out.println(rating+ " end");
+				
 				RatingList.add(rating);
+				//System.out.println(RatingList.get(i));i++;
 			}
 			
 		} catch (IOException e) {
@@ -99,6 +105,49 @@ public class FileConnector {
 			System.out.println("Incomplete Rating Details");
 		}
 		return rating;
+	}
+
+	public Map<String, User> FileConnectingUserFunction(String fileName) {
+		Map<String,User> userMap = new HashMap<String,User>();
+		InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream(fileName);
+		userMap=setUsers(stream);
+		
+		return userMap;
+	}
+	
+	public Map<String, User> setUsers(InputStream UserInputstream) {
+		Map<String, User> userMap= new HashMap<String, User>();
+		try {
+			List<String> lines = IOUtils.readLines(UserInputstream);
+			for(String line : lines){
+				User user = new User();
+				user = parseUserFileLine(line);
+				userMap.put(user.getUserId(), user);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	//System.out.println("UserMap "+userMap);
+	return userMap;
+	
+}
+
+	public User parseUserFileLine(String line) {
+		StringTokenizer strToken = new StringTokenizer(line,"|");
+		//System.out.println("strToken length "+strToken.countTokens());
+		User user= new User();
+		if(strToken.countTokens() == 5){
+			if(strToken.hasMoreTokens()){
+				user.setUserId(strToken.nextToken());
+				user.setAge(Integer.parseInt(strToken.nextToken()));
+				user.setGender(strToken.nextToken());
+				user.setJob(strToken.nextToken());
+			}
+		}
+		else {
+			System.out.println("Incomplete Rating Details");
+		}
+		return user;
 	}
 
 }

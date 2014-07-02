@@ -6,11 +6,22 @@ public class Movie {
 	private String MovieName;
 	private String url;
 	private String ReleaseDate;
-	private String Ratings;
-	public String getRatings() {
+	private Integer Ratings;
+	private Integer Count;
+	public Movie() {
+		Ratings=0;
+		Count=0;
+	}
+	public Integer getCount() {
+		return Count;
+	}
+	public void setCount(Integer count) {
+		Count = count;
+	}
+	public Integer getRatings() {
 		return Ratings;
 	}
-	public void setRatings(String ratings) {
+	public void setRatings(Integer ratings) {
 		Ratings = ratings;
 	}
 	public String getId() {
@@ -41,6 +52,7 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [Id=" + Id + ", MovieName=" + MovieName + ", url=" + url
-				+ ", ReleaseDate=" + ReleaseDate + "]";
+				+ ", ReleaseDate=" + ReleaseDate + ", Ratings=" + Ratings
+				+ ", Count=" + Count + "]";
 	}
 }

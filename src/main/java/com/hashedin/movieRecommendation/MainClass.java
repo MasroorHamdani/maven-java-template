@@ -11,21 +11,16 @@ public class MainClass {
 	public static void main(String[] args) throws IOException {
 		Map<String,Movie> moviesMap = new HashMap<String,Movie>();
 		ArrayList<Rating> RatingList = new ArrayList<Rating>();
+		Map<String,User> UserList=new HashMap<String,User>();
 		FileConnector fileconnector=new FileConnector();
 		String FileName="movie.data";
 		moviesMap = fileconnector.FileConnectingMovieFunction(FileName);
 		MovieManager moviemanager= new MovieManager();
-		/*	InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("movie.data");
-		moviesMap=moviemanager.convertInputStreamToMap(stream);*/
-	//	System.out.println("moviesMap "+ moviesMap);
 		FileName="ratings.data";
-		/*InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("ratings.data");
-		RatingList = moviemanager.setRatings(stream);*/
 		RatingList = fileconnector.FileConnectingRatingFunction(FileName);
-		InputStream stream = MovieManager.class.getClassLoader().getResourceAsStream("user.data");
-		// moviemanager.setUsers(stream);
-		// findRatings(RatingList);
-		//addRatings(RatingList,moviesMap);
+		FileName="user.data";
+		UserList=fileconnector.FileConnectingUserFunction(FileName);
+		moviemanager.addRatings(RatingList,moviesMap,UserList);
 		
 	}
 
