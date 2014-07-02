@@ -24,12 +24,13 @@ public class MovieDirectory {
 		//FilterTopMovieByYear(MoviesArray);
 		FilterMoviesByGenre(MoviesArray);
 	}
+	
 	/** Function for Filtering Data by Genre
 	 * 
 	 * @param ArrayList<Movie>
 	 * @return void
 	 */
-	private void FilterMoviesByGenre(ArrayList<Movie> moviesArray) {
+	public void FilterMoviesByGenre(ArrayList<Movie> moviesArray) {
 		Scanner scan= new Scanner(System.in);
 		Integer genre=scan.nextInt();
 		ArrayList<Movie> filtered= new ArrayList<Movie>();
@@ -152,14 +153,21 @@ public class MovieDirectory {
 	 * @param ArrayList<Rating>
 	 * @return void
 	 */
-	private void FilterTopWatchedMovie(ArrayList<Rating> RatingArray) {
+	public String FilterTopWatchedMovie(ArrayList<Rating> RatingArray) {
 		ArrayList <String> movieRating = new ArrayList<String>();
 		for(int i=0;i<RatingArray.size();i++){
 			movieRating.add(RatingArray.get(i).getId());
+			
+			//List Of Movies from Rating Class
 		}
 		String maxOccured=mostCommon(movieRating);
-		System.out.println("Most watched movie "+ maxOccured);
-		
+//		for(Movie mov: MoviesArray){
+//			//if(mov.getId() == maxOccured)
+//			//System.out.println("Most watched movie id"+ mov.getMovieName());	
+//		}
+		System.out.println("Most watched movie id "+ maxOccured);
+		//System.out.println("Most watched movie "+ maxOccured);
+		return maxOccured;
 	}
 	
 	/** Function for finding most common movie rated by users
